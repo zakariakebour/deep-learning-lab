@@ -1,34 +1,24 @@
-from losses import MSE
-
 class Optimizer:
-    def __init__(self,step):
-        self.step = step
+    def __init__(self, lr):
+        self.lr = lr  # tasa de aprendizaje (antes era "step", ahora es learning rate)
 
-    def update(self,neurona,x,real):
+    def update(self, neurona, x, real):
+        # Un solo forward — ya no repetimos esto por cada peso
+        pred = neurona.forward(x)
+
+        # dL/dpred: cuánto cambia el loss si cambia la predicción
+        d_loss_d_pred = -2 * (real - pred)
+
+        # Para cada peso: dL/dw_i = dL/dpred * dpred/dw_i = d_loss_d_pred * x[i]
         for i in range(len(neurona.weights)):
-            #Guardamos el peso original
-            peso_original = neurona.weights[i]
+            gradiente = d_loss_d_pred * x[i]
 
-            #Calculamos el loss actual para saber como esta actualmente el modelo
-            pred_actual = neurona.forward(x)
+            neurona.weights[i] -= self.lr * gradiente
 
-            loss_actual = MSE.compute(real,pred_actual)
+            print(f"Peso {i+1}: Gradiente: {gradiente}")
 
-            #Al peso le añadimos el valor nuevo
-            neurona.weights[i] += self.step
-   
-            #Prediccion nueva con el cambio de peso
-            pred_nueva = neurona.forward(x)
+        # dL/dbias = dL/dpred * dpred/dbias = d_loss_d_pred * 1
+        d_loss_d_bias = d_loss_d_pred
+        neurona.bias -= self.lr * d_loss_d_bias
 
-            loss_nueva = MSE.compute(real,pred_nueva)
-
-            #Aproximar el gradiante
-            gradiante = (loss_nueva - loss_actual) / self.step
-
-            #Imprimimos el gradiante
-            print(f"Peso {i + 1}: Gradiante: {gradiante}")
-              
-            #Aplicamos la mejora a los pesos
-            neurona.weights[i] = peso_original - self.step * gradiante
-
-
+        

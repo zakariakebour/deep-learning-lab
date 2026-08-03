@@ -6,7 +6,7 @@ from datasets import dataset
 
 neurona = Neuron(weights=[2,3],bias=1)
 
-optimizador = Optimizer(step=0.001)
+optimizador = Optimizer(lr=0.001)
 
 trainer = Trainer()
 
