@@ -4,23 +4,27 @@ class Trainer:
 
     def train(self, neurona, dataset,optimizador):
 
-        for x, real in dataset:
+        epoch = 10
 
-            # 1. Hacer la predicción
-            pred = neurona.forward(x)
+        for i in range(epoch):
+            for x, real in dataset:
 
-            # 2. Calcular la pérdida
-            loss = MSE.compute(real, pred)
+                #Hacer la predicción
+                pred = neurona.forward(x)
 
-            # 3. Mostrar información
-            print(
-                f"x={x} | "
-                f"pred={pred} | "
-                f"real={real} | "
-                f"loss={loss} | "
-                f"peso={neurona.weights} "
-            )
+                #Calcular la pérdida
+                loss = MSE.compute(real, pred)
 
-           #Aqui el optimizador
-            optimizador.update(neurona,x,real)
+                #Mostrar información
+                print(
+                    f"Epoch: {i + 1}\n"
+                    f"x={x} | "
+                    f"pred={pred} | "
+                    f"real={real} | "
+                    f"loss={loss} | "
+                    f"peso={neurona.weights} "
+                )
+
+                #Aqui el optimizador
+                optimizador.update(neurona,x,real)
 
