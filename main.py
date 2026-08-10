@@ -1,4 +1,4 @@
-#Importamos trainer para ejecutar
+# Importamos trainer para ejecutar
 from trainer import Trainer
 from neurona import Neuron
 from optimizers import Optimizer

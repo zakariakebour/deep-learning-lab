@@ -9,13 +9,13 @@ class Trainer:
         for i in range(epoch):
             for x, real in dataset:
 
-                #Hacer la predicción
+                # Hacer la predicción
                 pred = neurona.forward(x)
 
-                #Calcular la pérdida
+                # Calcular la pérdida
                 loss = MSE.compute(real, pred)
 
-                #Mostrar información
+                # Mostrar información
                 print(
                     f"Epoch: {i + 1}\n"
                     f"x={x} | "

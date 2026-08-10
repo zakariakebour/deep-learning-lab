@@ -1,4 +1,4 @@
-#Clase para calcular Loss
+# Clase para calcular Loss
 class MSE:
 
     @staticmethod
