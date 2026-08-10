@@ -8,14 +8,14 @@ class Neuron:
     #Metodo para prediccion
     def forward(self,x):
         #Variable para acumular el resultado de todas las multiplicaciones
-        resultado = 0
+        z = 0
         
         for peso, entrada in zip(self.weights,x):
-            resultado += peso * entrada
+            z += peso * entrada
 
         #Sumamos bias 
-        resultado += self.bias
+        z += self.bias
 
         #Devolvemos el resultado
-        return resultado
+        return z
 
