@@ -21,4 +21,4 @@ class Optimizer:
         d_loss_d_bias = d_loss_d_pred
         neurona.bias -= self.lr * d_loss_d_bias
 
-        
+          

@@ -1,4 +1,7 @@
-#Clase neurona
+# Importamos el método de función de activación ReLU
+from activations import Activation
+
+# Clase neurona
 class Neuron:
     def __init__(self,weights,bias):
         self.weights = weights
@@ -16,6 +19,9 @@ class Neuron:
         # Sumamos bias 
         z += self.bias
 
-        # Devolvemos el resultado
-        return z
+        # Aplicamos función de activación al resultado de la operación z
+        activacion = Activation.ReLU(z)
+
+        # Devolvemos la predicción
+        return activacion
 
