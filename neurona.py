@@ -3,10 +3,12 @@ from activations import Activation
 
 # Clase neurona
 class Neuron:
-    def __init__(self,weights,bias):
+    def __init__(self,weights,bias,z):
         self.weights = weights
         # Guardamos bias
         self.bias = bias
+        # Guardamos la operación z
+        self.z = None
 
     # Metodo para prediccion
     def forward(self,x):
@@ -19,6 +21,9 @@ class Neuron:
         # Sumamos bias 
         z += self.bias
 
+        # Guardamos el valor z 
+        self.z = z
+        
         # Aplicamos función de activación al resultado de la operación z
         activacion = Activation.ReLU(z)
 

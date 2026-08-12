@@ -9,9 +9,15 @@ class Optimizer:
         # dL/dpred: cuánto cambia el loss si cambia la predicción
         d_loss_d_pred = -2 * (real - pred)
 
+        # dReLU/dz: cuánto cambia ReLU si cambia z
+        if neurona.z > 0:
+            d_ReLU_d_z = 1
+        else:
+            d_ReLU_d_z = 0
+
         # Para cada peso: dL/dw_i = dL/dpred * dpred/dw_i = d_loss_d_pred * x[i]
         for i in range(len(neurona.weights)):
-            gradiente = d_loss_d_pred * x[i]
+            gradiente = d_loss_d_pred * d_ReLU_d_z * x[i]
 
             neurona.weights[i] -= self.lr * gradiente
 
