@@ -24,7 +24,7 @@ class Optimizer:
             print(f"Peso {i+1}: Gradiente: {gradiente}")
 
         # dL/dbias = dL/dpred * dpred/dbias = d_loss_d_pred * 1
-        d_loss_d_bias = d_loss_d_pred
+        d_loss_d_bias = d_loss_d_pred * d_ReLU_d_z
         neurona.bias -= self.lr * d_loss_d_bias
 
-          
+            
