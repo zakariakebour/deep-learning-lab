@@ -1,4 +1,5 @@
 class Optimizer:
+    # Constructor
     def __init__(self, lr):
         self.lr = lr  # tasa de aprendizaje (antes era "step", ahora es learning rate)
 

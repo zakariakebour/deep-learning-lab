@@ -13,7 +13,7 @@ optimizador = Optimizer(lr=0.001)
 trainer = Trainer()
 
 trainer.train(
-    neurona,
+    neurona, 
     dataset,
     optimizador
 )
