@@ -5,7 +5,7 @@ class Network:
         self.layers = layers
 
     # Método para pasar el resultado del layer a su siguiente capa
-    def forward(self,x,layer):
+    def forward(self,x):
         # Entrada
         entrada = x
 

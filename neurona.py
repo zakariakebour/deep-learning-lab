@@ -15,11 +15,8 @@ class Neuron:
         # Variable para acumular el resultado de todas las multiplicaciones
         z = 0
         
-        for peso, entrada in zip(self.weights,x):
-            z += peso * entrada
-
-        # Sumamos bias 
-        z += self.bias
+        # Realizamos la operación: Cada peso se multiplica por su entrada y se añade el bias al resultado total
+        z = sum(x * self.weights for x, self.weights in zip(self.weights,x)) + self.bias
 
         # Guardamos el valor z 
         self.z = z
