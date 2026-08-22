@@ -4,6 +4,8 @@ from activations import Activation
 # Clase neurona
 class Neuron:
     def __init__(self,weights,bias,z):
+        # Guardamos la ultima entrada de cada neurona para poder aplicar despues el backpropagation a cada neurona
+        self.last_input = None
         self.weights = weights
         # Guardamos bias
         self.bias = bias
@@ -16,7 +18,8 @@ class Neuron:
         z = 0
         
         # Realizamos la operación: Cada peso se multiplica por su entrada y se añade el bias al resultado total
-        z = sum(x * self.weights for x, self.weights in zip(self.weights,x)) + self.bias
+        self.last_input = x  # guardamos la entrada para el backward
+        z = sum(w * xi for w, xi in zip(self.weights, x)) + self.bias
 
         # Guardamos el valor z 
         self.z = z

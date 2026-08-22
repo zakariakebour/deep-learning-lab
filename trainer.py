@@ -2,7 +2,7 @@ from losses import MSE
 
 class Trainer:
 
-    def train(self, neurona, dataset,optimizador):
+    def train(self, network, dataset,optimizador):
 
         epoch = 10
 
@@ -10,7 +10,10 @@ class Trainer:
             for x, real in dataset:
 
                 # Hacer la predicción
-                pred = neurona.forward(x)
+                pred = network.forward(x)
+
+                # Convertimos el numero de salida de la ultima capa en un valor normal y no en una lista
+                pred = pred[0]
 
                 # Calcular la pérdida
                 loss = MSE.compute(real, pred)
@@ -22,9 +25,7 @@ class Trainer:
                     f"pred={pred} | "
                     f"real={real} | "
                     f"loss={loss} | "
-                    f"peso={neurona.weights} "
                 )
 
                 #Aqui el optimizador
-                optimizador.update(neurona,x,real)
-
+                optimizador.update(network,x,real)
